@@ -1,0 +1,219 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\alkatresz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\alkatresz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|c:\\users\\andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\httprequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\httprequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\jsonresponsedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\jsonresponsedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\signupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\signupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\token.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\token.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\signupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\signupform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21FC62DD-5436-4941-8910-E83C9DD2F1CD}|erettsegiprojekt\\erettsegiprojekt.csproj|solutionrelative:erettsegiprojekt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:erettsegiprojekt\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\MainForm.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\MainForm.cs*",
+              "RelativeToolTip": "erettsegiprojekt\\MainForm.cs*",
+              "ViewState": "AgIAAIcAAAAAAAAAAIAwwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T10:54:15.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\LoginForm.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\LoginForm.cs",
+              "RelativeToolTip": "erettsegiprojekt\\LoginForm.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAtwCQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T10:40:59.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\MainForm.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\MainForm.cs [Design]*",
+              "RelativeToolTip": "erettsegiprojekt\\MainForm.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T11:35:12.807Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HttpRequests.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\HttpRequests.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\HttpRequests.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\HttpRequests.cs",
+              "RelativeToolTip": "erettsegiprojekt\\HttpRequests.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAIAwwF4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T12:01:58.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Alkatresz.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Alkatresz.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\Alkatresz.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Alkatresz.cs",
+              "RelativeToolTip": "erettsegiprojekt\\Alkatresz.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAMwBUAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T11:04:22.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\LoginForm.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\LoginForm.cs [Design]",
+              "RelativeToolTip": "erettsegiprojekt\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T08:40:36.931Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Form1.Designer.cs",
+              "RelativeToolTip": "erettsegiprojekt\\Form1.Designer.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T10:19:30.692Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Token.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Token.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\Token.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Token.cs",
+              "RelativeToolTip": "erettsegiprojekt\\Token.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T12:09:13.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "jsonResponseData.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\jsonResponseData.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\jsonResponseData.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\jsonResponseData.cs",
+              "RelativeToolTip": "erettsegiprojekt\\jsonResponseData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T12:07:15.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SignUpForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\SignUpForm.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\SignUpForm.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\SignUpForm.cs [Design]",
+              "RelativeToolTip": "erettsegiprojekt\\SignUpForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T10:24:00.223Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SignUpForm.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\SignUpForm.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\SignUpForm.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\SignUpForm.cs",
+              "RelativeToolTip": "erettsegiprojekt\\SignUpForm.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAtwBwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T10:32:47.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Program.cs",
+              "RelativeDocumentMoniker": "erettsegiprojekt\\Program.cs",
+              "ToolTip": "C:\\Users\\Andi\\source\\repos\\erettsegiprojekt\\erettsegiprojekt\\Program.cs",
+              "RelativeToolTip": "erettsegiprojekt\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T09:23:51.968Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
