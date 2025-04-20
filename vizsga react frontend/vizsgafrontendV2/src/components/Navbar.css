@@ -1,0 +1,51 @@
+.navbar-header {
+  position: fixed; /* Fix pozíció a képernyő tetején */
+  top: 0;
+  left: 0;
+  width: 100%; /* Teljes szélesség */
+  z-index: 1000; /* Mindig a többi elem fölött legyen */
+  background-color: #333; /* Sötét háttérszín */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék a header alatt */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Bal és jobb oldali elemek közötti tér */
+  align-items: center; /* Függőleges középre igazítás */
+  padding: 10px 20px; /* Térköz a navigációs sávon belül */
+  color: white; /* Fehér szöveg */
+}
+
+.navbar-left {
+  float: left;
+}
+
+.navbar-right {
+  float: right;
+  
+}
+
+.navbar a {
+  text-decoration: none; /* Linkek aláhúzásának eltávolítása */
+  color: white; /* Linkek színe */
+  font-weight: bold; /* Félkövér szöveg */
+}
+
+.navbar a:hover {
+  text-decoration: underline; /* Linkek aláhúzása hover esetén */
+}
+
+.navbar button {
+  background-color: #555; /* Gomb háttérszíne */
+  color: white; /* Gomb szövegének színe */
+  border: none; /* Gomb keretének eltávolítása */
+  padding: 5px 10px; /* Gomb belső margója */
+  border-radius: 5px; /* Lekerekített sarkok */
+  cursor: pointer; /* Mutató kurzor */
+  font-weight: bold; /* Félkövér szöveg */
+  margin: 2px; /* Margó a gombok között */
+}
+
+.navbar button:hover {
+  background-color: #777; /* Gomb hover háttérszíne */
+}
