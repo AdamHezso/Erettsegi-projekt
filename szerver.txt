@@ -1,0 +1,181 @@
+console.log("Fut a szerver.")
+
+const express = require('express')
+const dbHandler = require('./dbHandler')
+const { alkatresz } = require('./dbHandler')
+const { felhasznalo } = require('./dbHandler')
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
+
+const cors = require('cors')
+
+const server = express()
+server.use(express.json())
+server.use(cors())
+
+const TITOK = process.env.SECRET
+const PORT = process.env.PORT
+
+dbHandler.alkatresz.sync({alter:true})
+dbHandler.felhasznalo.sync({alter:true})
+
+function auth(){
+    return(req,res,next) => {
+        const aUTHh = req.headers.authorization
+        if(typeof(aUTHh) == 'undefined'){
+            res.status(401)
+            res.json({'message':'Nem létező token'})
+            res.end()
+            return
+        }
+        if(!aUTHh.startsWith('Bearer')){
+            res.status(401)
+            res.json({'message':'Hibás token'})
+            res.end()
+            return
+        }
+        const encodedToken = aUTHh.split(' ')[1]
+        try{
+            const decodedToken = jwt.verify(encodedToken,TITOK)
+            req.userName = decodedToken.felnev
+            req.userId = decodedToken.id
+        }catch(error){
+            res.json({'message':error})
+            res.end()
+        }
+    }
+}
+
+server.get('/parts', async (req, res) => {
+    try {
+        const all = await dbHandler.alkatresz.findAll(
+            {
+                attributes: ["nev","id","ar","raktarkeszlet"],
+                distinct: true
+            }
+        )
+        res.json(all)
+    } catch (error) {
+        res.json({'message':error})
+    }
+    res.end()
+})
+
+server.post('/register',auth(), async (req, res) => {
+    let oneUser
+    try{
+        oneUser = await dbHandler.felhasznalo.findOne(
+            {
+                where:{
+                    felnev: req.body.registerName
+                }
+            })
+        
+    }catch(error){
+        res.json({'message':error})
+        console.log(error)
+        res.end()
+        return
+    }
+
+    if(oneUser){
+        res.status(403)
+        res.json({'message': 'Ilyen felhasználó már van.'})
+        res.end()
+        return
+    }
+    try {
+        await dbHandler.felhasznalo.create({
+            felnev: req.body.registerName,
+            jelszo: req.body.registerPassword
+        })
+    } catch (error) {
+        await res.json({'message':error})
+        console.log(error)
+        res.end()
+        return
+    }
+    res.status(201)
+    res.json({'message':'Sikeres regisztráció'})
+    res.end()
+})
+
+server.post('/login', async (req, res) => {
+    let oneUser
+    try{
+        oneUser = await dbHandler.felhasznalo.findOne(
+            {
+                where:{
+                    felnev: req.body.loginName,
+                    jelszo: req.body.loginPassword
+                }
+            })
+        
+    }catch(error){
+        res.json({'message':error})
+        console.log(error)
+        res.end()
+        return
+    }
+
+    if(oneUser){
+        try{
+            const token = await jwt.sign({'nev':oneUser.felnev,'id':oneUser.id},TITOK,{expiresIn:'1h'})
+            res.json({'message':'Sikeres bejelentkezés'})
+            res.end()
+            return
+        }catch(error){
+            res.json({'message':error})
+            console.log(error)
+            res.end()
+            return
+
+        }
+    }
+    res.status(409)
+    res.json({'message':'Hibás felhasználónév vagy jelszó'})
+    res.end()
+})
+
+server.delete('/parts/:id', async (req, res) => {
+    const id = req.params.id; // Get the ID from the request parameters
+
+    try {
+        // Find the item by ID using the alkatresz model
+        const part = await alkatresz.findByPk(id);
+
+        if (!part) {
+            // If the item is not found, return a 404 response
+            return res.status(404).send('Item not found');
+        }
+
+        // Delete the item
+        await part.destroy();
+
+        // Return a success response
+        res.status(200).send('Item deleted successfully');
+    } catch (err) {
+        // Log the error and return a 500 response
+        console.error('Error deleting item:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+server.post('/parts', (req, res) => {
+    const { nev, ar, raktarkeszlet } = req.body;
+    const query = 'INSERT INTO parts (nev, ar, raktarkeszlet) VALUES (?, ?, ?)';
+
+    db.query(query, [nev, ar, raktarkeszlet], (err, result) => {
+        if (err) {
+            res.status(500).send('Hiba történt a termék hozzáadásakor: ' + err.message);
+        } else {
+            res.status(201).send('A termék sikeresen hozzáadva.');
+        }
+    });
+});
+
+
+
+server.listen(PORT, () => {console.log('A szerverunk elkezdett futni a ' + PORT + ' címen')})
