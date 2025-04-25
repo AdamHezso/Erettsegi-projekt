@@ -1,0 +1,46 @@
+.homepage-container {
+  padding: 0 0 40px 0;
+}
+
+.carousel-container {
+  margin-bottom: 40px;
+}
+
+.daily-offers-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.daily-offers-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.daily-offer-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 24px;
+  min-width: 200px;
+  max-width: 240px;
+  text-align: center;
+}
+.daily-offer-card h3,
+.daily-offer-card p {
+  color: black;
+}
+.daily-offer-card button {
+  margin-top: 12px;
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.daily-offer-card button:hover {
+  background: #0056b3;
+}

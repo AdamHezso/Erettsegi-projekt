@@ -5,7 +5,6 @@ import StorePage from './pages/StorePage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import AuthPage from './pages/AuthPage';
-import './App.css';
 
 function App() {
   return (

@@ -1,0 +1,37 @@
+.cart-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 0;
+}
+.cart-item button {
+  padding: 0.3rem 0.7rem;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cart-item button:not(:last-child) {
+  background: #007bff;
+  margin-right: 0.3rem;
+}
+.cart-item button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.cart-item input[type="number"] {
+  width: 50px;
+  padding: 0.2rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
