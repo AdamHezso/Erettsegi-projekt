@@ -38,7 +38,9 @@ function Navbar({ isLoggedIn, onLogout }) {
           {isLoggedIn && hasOrder && (
             <button onClick={() => navigate('/order-tracking')}>Rendelés követés</button>
           )}
-          {/* Későbbi oldalak gombjai ide kerülnek */}
+          {isLoggedIn && (
+            <button onClick={() => navigate('/profile')}>Profil</button>
+          )}
         </div>
         <div className="navbar-right">
           {isLoggedIn ? (
