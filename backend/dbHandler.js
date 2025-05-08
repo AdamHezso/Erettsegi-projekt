@@ -59,6 +59,38 @@ exports.felhasznalo = dbHandler.define(
         "jelszo":{
             type:DataTypes.STRING,
             allowNull:true
+        },
+        "email":{
+            type:DataTypes.STRING,
+            allowNull:true
+        }
+    }
+)
+
+exports.rendeles = dbHandler.define(
+    "rendeles",{
+        "id":{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        "userId":{
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        "fizetesiAdatok":{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        "szallitasiAdatok":{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        "datum":{
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
         }
     }
 )

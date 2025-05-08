@@ -1,0 +1,95 @@
+Főbb funkciók és modulok
+Modulok:
+
+express: Az Express.js keretrendszer a szerver működtetéséhez.
+dotenv: Környezeti változók betöltése a .env fájlból.
+jsonwebtoken: JSON Web Token (JWT) kezelés az autentikációhoz.
+cors: CORS (Cross-Origin Resource Sharing) engedélyezése.
+dbHandler: Az adatbázis-kezeléshez szükséges Sequelize modellek.
+Környezeti változók:
+
+TITOK: A JWT titkos kulcsa.
+PORT: A szerver portja.
+Adatbázis szinkronizálás:
+
+A dbHandler segítségével az adatbázis táblák (alkatresz, felhasznalo, rendeles) szinkronizálása történik az alter: true opcióval.
+Middleware-ek
+auth() függvény:
+Ellenőrzi a bejövő kérések Authorization fejlécét.
+JWT token dekódolása és ellenőrzése.
+A felhasználó azonosítóját (userId) és nevét (userName) hozzáadja a kérés objektumához.
+API végpontok
+GET /parts
+
+Az összes alkatrész lekérése az adatbázisból.
+Csak a nev, ar, raktarkeszlet és id attribútumokat adja vissza.
+POST /parts
+
+Új alkatrész hozzáadása.
+Kötelező mezők: nev, ar, raktarkeszlet.
+POST /register
+
+Új felhasználó regisztrációja.
+Ellenőrzi, hogy a felhasználónév már létezik-e.
+POST /login
+
+Felhasználó bejelentkezése.
+Sikeres bejelentkezés esetén JWT tokent generál.
+GET /profile
+
+A bejelentkezett felhasználó profiljának lekérése.
+Csak autentikált felhasználók érhetik el.
+PUT /profile/password
+
+A felhasználó jelszavának módosítása.
+Csak autentikált felhasználók érhetik el.
+DELETE /profile
+
+A felhasználó törlése az adatbázisból.
+Csak autentikált felhasználók érhetik el.
+DELETE /parts/:id
+
+Egy alkatrész törlése az id alapján.
+POST /checkout
+
+Új rendelés létrehozása.
+Kötelező mezők: fizetesiAdatok, szallitasiAdatok.
+GET /myorder
+
+A bejelentkezett felhasználó legutóbbi rendelésének lekérése.
+2. .env
+Ez a fájl a környezeti változókat tartalmazza, amelyek a szerver működéséhez szükségesek.
+
+Tartalom:
+3. dbHandler.js
+Ez a fájl a Sequelize ORM-et használja az adatbázis modellek definiálására és kezelésére.
+
+Adatbázis kapcsolat
+A Sequelize példány létrehozása a .env fájlban megadott környezeti változók alapján.
+Ha a kapcsolat sikertelen, a hiba a konzolra kerül.
+Modellek
+alkatresz
+
+Az alkatrészek táblája.
+Oszlopok:
+id: Egyedi azonosító (auto-increment).
+nev: Az alkatrész neve.
+ar: Az alkatrész ára.
+raktarkeszlet: Az alkatrész raktárkészlete.
+felhasznalo
+
+A felhasználók táblája.
+Oszlopok:
+id: Egyedi azonosító (auto-increment).
+felnev: Felhasználónév.
+jelszo: Jelszó.
+email: Email cím.
+rendeles
+
+A rendelések táblája.
+Oszlopok:
+id: Egyedi azonosító (auto-increment).
+userId: A rendelést leadó felhasználó azonosítója.
+fizetesiAdatok: Fizetési adatok.
+szallitasiAdatok: Szállítási adatok.
+datum: A rendelés dátuma (alapértelmezett: aktuális idő).
