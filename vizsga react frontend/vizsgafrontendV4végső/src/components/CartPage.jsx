@@ -18,24 +18,24 @@ const CartPage = ({ cart, onUpdateCart }) => {
 
   return (
     <div className="cart-container">
-      <h1>Kosár</h1>
+      <h1>Cart</h1>
       {cart.length === 0 ? (
-        <p>A kosár üres.</p>
+        <p>The cart is empty.</p>
       ) : (
         <>
           <ul className="cart-list">
             {cart.map(item => (
               <li key={item.id} className="cart-item">
-                <span>{item.nev}</span>
-                <span>Mennyiség: {item.quantity}</span>
+                <span>{item.name}</span>
+                <span>Quantity: {item.quantity}</span>
                 <button onClick={() => handleQuantityChange(item.id, 1)}>+</button>
                 <button onClick={() => handleQuantityChange(item.id, -1)} disabled={item.quantity === 1}>-</button>
-                <button onClick={() => handleRemove(item.id)}>Eltávolítás</button>
+                <button onClick={() => handleRemove(item.id)}>Remove</button>
               </li>
             ))}
           </ul>
           <button style={{marginTop: '2rem', padding: '0.7rem 1.2rem', borderRadius: 6, background: '#007bff', color: '#fff', border: 'none', cursor: 'pointer', width: 200, fontWeight: 600}} onClick={() => navigate('/checkout')}>
-            Tovább a kasszához
+            Proceed to checkout
           </button>
         </>
       )}

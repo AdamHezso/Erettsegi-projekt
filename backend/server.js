@@ -1,42 +1,39 @@
-console.log("Fut a szerver.")
-
+// Szükséges modulok betöltése
 const express = require('express')
 const dbHandler = require('./dbHandler')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
-
 const cors = require('cors')
 
 const server = express()
 server.use(express.json())
+server.use(cors())
 
-
-server.use(cors());
-
-
-const TITOK = process.env.SECRET
+// Környezeti változók beolvasása
+const SECRET = process.env.SECRET
 const PORT = process.env.PORT
 
-dbHandler.alkatresz.sync({alter:true})
-dbHandler.felhasznalo.sync({alter:true})
-dbHandler.rendeles.sync({alter:true})
+// Adatbázis szinkronizálása
+dbHandler.part.sync({alter:true})
+dbHandler.user.sync({alter:true})
+dbHandler.order.sync({alter:true})
 
+// Hitelesítést végző middleware (JWT)
 function auth(){
     return(req,res,next) => {
-        const aUTHh = req.headers.authorization;
-        console.log('Authorization fejléc:', aUTHh);
-        if(typeof(aUTHh) == 'undefined'){
-            res.status(401).json({'message':'Nem létező token'});
+        const authHeader = req.headers.authorization;
+        if(typeof(authHeader) == 'undefined'){
+            res.status(401).json({'message':'Token does not exist'});
             return;
         }
-        if(!aUTHh.startsWith('Bearer')){
-            res.status(401).json({'message':'Hibás token'});
+        if(!authHeader.startsWith('Bearer')){
+            res.status(401).json({'message':'Invalid token'});
             return;
         }
-        const encodedToken = aUTHh.split(' ')[1];
+        const encodedToken = authHeader.split(' ')[1];
         try{
-            const decodedToken = jwt.verify(encodedToken,TITOK);
-            req.userName = decodedToken.felnev;
+            const decodedToken = jwt.verify(encodedToken,SECRET);
+            req.username = decodedToken.username;
             req.userId = decodedToken.id;
             next();
         }catch(error){
@@ -45,14 +42,13 @@ function auth(){
     }
 }
 
+// Összes alkatrész lekérdezése (GET /parts)
 server.get('/parts', async (req, res) => {
     try {
-        const all = await dbHandler.alkatresz.findAll(
-            {
-                attributes: ["nev","ar","raktarkeszlet","id"],
-                distinct: true
-            }
-        )
+        const all = await dbHandler.part.findAll({
+            attributes: ["name","price","stock","id"],
+            distinct: true
+        })
         res.json(all)
     } catch (error) {
         res.json({'message':error})
@@ -60,52 +56,92 @@ server.get('/parts', async (req, res) => {
     res.end()
 })
 
+// Új alkatrész hozzáadása (POST /parts)
 server.post('/parts', async (req, res) => {
-    const { nev, ar, raktarkeszlet } = req.body;
-    if (!nev || typeof ar === 'undefined' || typeof raktarkeszlet === 'undefined') {
-        res.status(400).json({ message: 'Hiányzó adat(ok)' });
+    const name = req.body.name;
+    const price = req.body.price;
+    const stock = req.body.stock;
+    if (!name || typeof price === 'undefined' || typeof stock === 'undefined') {
+        res.status(400).json({ message: 'Missing data' });
         return;
     }
     try {
-        const newPart = await dbHandler.alkatresz.create({ nev, ar, raktarkeszlet });
+        const newPart = await dbHandler.part.create({ name, price, stock });
         res.status(201).json({
             id: newPart.id,
-            nev: newPart.nev,
-            ar: newPart.ar,
-            raktarkeszlet: newPart.raktarkeszlet
+            name: newPart.name,
+            price: newPart.price,
+            stock: newPart.stock
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+    res.end()
 });
 
+// Alkatrész módosítása (PUT /parts/:id)
+server.put('/parts/:id', async (req, res) => {
+    const id = req.params.id;
+    const name = req.body.name;
+    const price = req.body.price;
+    const stock = req.body.stock;
+    try {
+        const part = await dbHandler.part.findByPk(id);
+        if (!part) {
+            return res.status(404).send('Item not found');
+        }
+        part.name = name;
+        part.price = price;
+        part.stock = stock;
+        await part.save();
+        res.status(200).send('Item updated successfully');
+    } catch (err) {
+        console.error('Error updating item:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Alkatrész törlése ID alapján (DELETE /parts/:id)
+server.delete('/parts/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const part = await dbHandler.part.findByPk(id);
+        if (!part) {
+            return res.status(404).send('Item not found');
+        }
+        await part.destroy();
+        res.status(200).send('Item deleted successfully');
+    } catch (err) {
+        console.error('Error deleting item:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Felhasználó regisztrálása (POST /register)
 server.post('/register', async (req, res) => {
     let oneUser
     try{
-        oneUser = await dbHandler.felhasznalo.findOne(
-            {
-                where:{
-                    felnev: req.body.registerName
-                }
-            })
-        
+        oneUser = await dbHandler.user.findOne({
+            where:{
+                username: req.body.registerName
+            }
+        })
     }catch(error){
         res.json({'message':error})
         console.log(error)
         res.end()
         return
     }
-
     if(oneUser){
         res.status(403)
-        res.json({'message': 'Ilyen felhasználó már van.'})
+        res.json({'message': 'User already exists.'})
         res.end()
         return
     }
     try {
-        await dbHandler.felhasznalo.create({
-            felnev: req.body.registerName,
-            jelszo: req.body.registerPassword,
+        await dbHandler.user.create({
+            username: req.body.registerName,
+            password: req.body.registerPassword,
             email: req.body.email
         })
     } catch (error) {
@@ -115,32 +151,30 @@ server.post('/register', async (req, res) => {
         return
     }
     res.status(201)
-    res.json({'message':'Sikeres regisztráció'})
+    res.json({'message':'Registration successful'})
     res.end()
 })
 
+// Felhasználó bejelentkezése (POST /login)
 server.post('/login', async (req, res) => {
     let oneUser
     try{
-        oneUser = await dbHandler.felhasznalo.findOne(
-            {
-                where:{
-                    felnev: req.body.loginName,
-                    jelszo: req.body.loginPassword
-                }
-            })
-        
+        oneUser = await dbHandler.user.findOne({
+            where:{
+                username: req.body.loginName,
+                password: req.body.loginPassword
+            }
+        })
     }catch(error){
         res.json({'message':error})
         console.log(error)
         res.end()
         return
     }
-
     if(oneUser){
         try{
-            const token = await jwt.sign({'felnev':oneUser.felnev,'id':oneUser.id},TITOK,{expiresIn:'1h'})
-            res.json({'message':'Sikeres bejelentkezés', 'token': token})
+            const token = await jwt.sign({'username':oneUser.username,'id':oneUser.id},SECRET,{expiresIn:'1h'})
+            res.json({'message':'Login successful', 'token': token})
             res.end()
             return
         }catch(error){
@@ -151,18 +185,19 @@ server.post('/login', async (req, res) => {
         }
     }
     res.status(409)
-    res.json({'message':'Hibás felhasználónév vagy jelszó'})
+    res.json({'message':'Invalid username or password'})
     res.end()
 })
 
+// Profil lekérdezése (GET /profile)
 server.get('/profile', auth(), async (req, res) => {
     try {
-        const user = await dbHandler.felhasznalo.findOne({
+        const user = await dbHandler.user.findOne({
             where: { id: req.userId },
-            attributes: ['felnev', 'jelszo', 'email']
+            attributes: ['username', 'password', 'email']
         });
         if (!user) {
-            res.status(404).json({ message: 'Felhasználó nem található' });
+            res.status(404).json({ message: 'User not found' });
             return;
         }
         res.json(user);
@@ -172,93 +207,80 @@ server.get('/profile', auth(), async (req, res) => {
     res.end()
 });
 
+// Jelszó módosítása (PUT /profile/password)
 server.put('/profile/password', auth(), async (req, res) => {
     const { newPassword } = req.body;
     if (!newPassword) {
-        res.status(400).json({ message: 'Hiányzó új jelszó' });
+        res.status(400).json({ message: 'Missing new password' });
         return;
     }
     try {
-        await dbHandler.felhasznalo.update(
-            { jelszo: newPassword },
+        await dbHandler.user.update(
+            { password: newPassword },
             { where: { id: req.userId } }
         );
-        res.json({ message: 'Jelszó sikeresen módosítva' });
+        res.json({ message: 'Password changed successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
     res.end()
 });
 
+// Profil törlése (DELETE /profile)
 server.delete('/profile', auth(), async (req, res) => {
     try {
-        const deleted = await dbHandler.felhasznalo.destroy({ where: { id: req.userId } });
+        const deleted = await dbHandler.user.destroy({ where: { id: req.userId } });
         if (deleted) {
-            res.json({ message: 'Felhasználó törölve' });
+            res.json({ message: 'User deleted' });
         } else {
-            res.status(404).json({ message: 'Felhasználó nem található' });
+            res.status(404).json({ message: 'User not found' });
         }
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+    res.end()
 });
 
-server.delete('/parts/:id', async (req, res) => {
-    const id = req.params.id; // Get the ID from the request parameters
-
-    try {
-        // Find the item by ID using the alkatresz model
-        const part = await alkatresz.findByPk(id);
-
-        if (!part) {
-            // If the item is not found, return a 404 response
-            return res.status(404).send('Item not found');
-        }
-
-        // Delete the item
-        await part.destroy();
-
-        // Return a success response
-        res.status(200).send('Item deleted successfully');
-    } catch (err) {
-        // Log the error and return a 500 response
-        console.error('Error deleting item:', err);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
+// Rendelés leadása (POST /checkout)
 server.post('/checkout', auth(), async (req, res) => {
-    const { fizetesiAdatok, szallitasiAdatok } = req.body;
-    if (!fizetesiAdatok || !szallitasiAdatok) {
-        res.status(400).json({ message: 'Hiányzó adatok!' });
+    const { paymentData, shippingData } = req.body;
+    if (!paymentData || !shippingData) {
+        res.status(400).json({ message: 'Missing data' });
         return;
     }
     try {
-        const newOrder = await dbHandler.rendeles.create({
+        const newOrder = await dbHandler.order.create({
             userId: req.userId,
-            fizetesiAdatok,
-            szallitasiAdatok
+            paymentData,
+            shippingData
         });
         res.status(201).json({ id: newOrder.id });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+    res.end()
 });
 
+// Saját rendelés lekérdezése (GET /myorder)
 server.get('/myorder', auth(), async (req, res) => {
     try {
-        const order = await dbHandler.rendeles.findOne({
+        const order = await dbHandler.order.findOne({
             where: { userId: req.userId },
-            order: [['datum', 'DESC']]
+            order: [['date', 'DESC']]
         });
         if (!order) {
-            res.status(404).json({ message: 'Nincs aktív rendelésed!' });
+            res.status(404).json({ message: 'No active orders!' });
             return;
         }
         res.json(order);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+    res.end()
 });
 
-server.listen(PORT, () => {console.log('A szerverunk elkezdett futni a ' + PORT + ' címen')})
+// Szerver indítása
+const envMsg = PORT ? PORT : 'unknown port';
+server.listen(PORT, () => {
+    console.log('Our server has started running on ' + envMsg + ' address')
+})

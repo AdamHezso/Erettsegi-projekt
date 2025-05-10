@@ -11,24 +11,30 @@ const ShopPage = ({ onAddToCart }) => {
       .then(res => res.json())
       .then(data => {
         const arr = Array.isArray(data) ? data : [];
-        setParts(arr);
-        setFiltered(arr);
+        const mapped = arr.map(part => ({
+          id: part.id,
+          name: part.nev,
+          price: part.ar,
+          stock: part.raktarkeszlet
+        }));
+        setParts(mapped);
+        setFiltered(mapped);
       });
   }, []);
 
   useEffect(() => {
     setFiltered(parts.filter(part =>
-      typeof part.nev === 'string' && part.nev.toLowerCase().includes(search.toLowerCase())
+      typeof part.name === 'string' && part.name.toLowerCase().includes(search.toLowerCase())
     ));
   }, [search, parts]);
 
   return (
     <div className="shop-container">
-      <h1>Áruház</h1>
+      <h1>Shop</h1>
       <form style={{marginBottom: '20px'}} onSubmit={e => e.preventDefault()}>
         <input
           type="text"
-          placeholder="Keresés név alapján..."
+          placeholder="Search by name..."
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
@@ -36,10 +42,10 @@ const ShopPage = ({ onAddToCart }) => {
       <div className="card-list">
         {filtered.map(part => (
           <div className="part-card" key={part.id}>
-            <h3>{part.nev}</h3>
-            <p style={{ color: 'black' }}>Ár: {part.ar ? part.ar + ' Ft' : 'N/A'}</p>
-            <p style={{ color: 'black' }}>Raktárkészlet: {part.raktarkeszlet !== undefined ? part.raktarkeszlet : 'N/A'}</p>
-            <button onClick={() => onAddToCart(part)}>Kosárba</button>
+            <h3>{part.name}</h3>
+            <p style={{ color: 'black' }}>Price: {part.price ? part.price + ' Ft' : 'N/A'}</p>
+            <p style={{ color: 'black' }}>Stock: {part.stock !== undefined ? part.stock : 'N/A'}</p>
+            <button onClick={() => onAddToCart(part)}>Add to cart</button>
           </div>
         ))}
       </div>

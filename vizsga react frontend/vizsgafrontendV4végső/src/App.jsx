@@ -22,7 +22,7 @@ function HomePage() {
           setDailyParts([]);
           return;
         }
-        // Naponta változó random ajánlatok (seed: dátum)
+        // Daily random offers (seed: date)
         const today = new Date();
         const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
         function seededRandom(s) {
@@ -40,8 +40,8 @@ function HomePage() {
 
   return (
     <div id="home" className="homepage-container">
-      <h1>Üdvözlünk a főoldalon!</h1>
-      <div id="carouselExampleIndicators" className="carousel slide carousel-container" data-bs-ride="carousel" data-bs-interval="3000">
+      <h1>Welcome to the homepage!</h1>
+      <div id="carouselExampleIndicators" className="carousel slide carousel-container" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="true">
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -49,26 +49,26 @@ function HomePage() {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src="/assets/img/part1.jpg" className="d-block w-100" alt="Kép 1" />
+            <img src="/assets/img/part4.jpg" className="d-block w-100" alt="Image 1" />
           </div>
           <div className="carousel-item">
-            <img src="/assets/img/part2.jpg" className="d-block w-100" alt="Kép 2" />
+            <img src="/assets/img/part5.jpg" className="d-block w-100" alt="Image 2" />
           </div>
           <div className="carousel-item">
-            <img src="/assets/img/part1.jpg" className="d-block w-100" alt="Kép 3" />
+            <img src="/assets/img/part3.jpg" className="d-block w-100" alt="Image 3" />
           </div>
         </div>
       </div>
       <div style={{ marginTop: 40 }}>
-        <h2 className="daily-offers-title">Napi ajánlatok</h2>
+        <h2 className="daily-offers-title">Daily Offers</h2>
         <div className="daily-offers-row">
           {dailyParts.map(part => (
             <div key={part.id} className="daily-offer-card">
-              <h3>{part.nev}</h3>
-              <p>Ár: {part.ar ? part.ar + ' Ft' : 'N/A'}</p>
-              <p>Raktárkészlet: {part.raktarkeszlet !== undefined ? part.raktarkeszlet : 'N/A'}</p>
+              <h3>{part.name}</h3>
+              <p>Price: {part.price ? part.price + ' Ft' : 'N/A'}</p>
+              <p>Stock: {part.stock !== undefined ? part.stock : 'N/A'}</p>
               <button onClick={() => window.dispatchEvent(new CustomEvent('add-to-cart', { detail: part }))}>
-                Kosárba
+                Add to cart
               </button>
             </div>
           ))}
@@ -85,7 +85,7 @@ function LoginPage({ onLogin }) {
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>Regisztráció/Bejelentkezés</h2>
+        <h2>Register/Login</h2>
         <label htmlFor="uname">Username: </label>
         <input type="email" name="uname" id="uname" /><br />
         <label htmlFor="pass">Password: </label>
@@ -111,17 +111,17 @@ function LoginPage({ onLogin }) {
                 if (response.token) {
                   localStorage.setItem('token', response.token);
                 }
-                alert('Sikeres bejelentkezés');
+                alert('Login successful');
                 onLogin();
-                navigate('/profile'); // Navigálás a profil oldalra
+                navigate('/profile'); // Navigate to profile page
               } else if (loginRequest.readyState === 4) {
-                alert('Hibás bejelentkezési adatok');
+                alert('Invalid login credentials');
               }
             };
           } else {
             setLogin(true);
           }
-        }}>Bejelentkezés</button>
+        }}>Login</button>
         <button onClick={() => {
           if (login) {
             setLogin(false);
@@ -136,13 +136,13 @@ function LoginPage({ onLogin }) {
             }));
             regRequest.onreadystatechange = () => {
               if (regRequest.status === 201 && regRequest.readyState === 4) {
-                alert('Sikeres regisztráció');
+                alert('Registration successful');
               } else if (regRequest.readyState === 4) {
-                alert('Hiba a regisztráció során');
+                alert('Registration error');
               }
             };
           }
-        }}>Regisztráció</button>
+        }}>Register</button>
       </div>
     </div>
   );
@@ -161,7 +161,7 @@ function ProfilePage({ onLogout }) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
-        if (!res.ok) throw new Error('Hiba a profil lekérdezésekor: ' + res.status);
+        if (!res.ok) throw new Error('Error fetching profile: ' + res.status);
         return res.json();
       })
       .then(data => setUser(data))
@@ -169,7 +169,7 @@ function ProfilePage({ onLogout }) {
   }, []);
 
   const handleDelete = () => {
-    if (!window.confirm('Biztosan törölni szeretnéd a felhasználót?')) return;
+    if (!window.confirm('Are you sure you want to delete your user?')) return;
     const token = localStorage.getItem('token');
     fetch('http://localhost:3000/profile', {
       method: 'DELETE',
@@ -184,8 +184,8 @@ function ProfilePage({ onLogout }) {
       });
   };
 
-  if (!user) return <div style={{ marginTop: '70px' }}>Betöltés...</div>;
-  if (user.error) return <div style={{ marginTop: '70px', color: 'red' }}>Hiba: {user.error}</div>;
+  if (!user) return <div style={{ marginTop: '70px' }}>Loading...</div>;
+  if (user.error) return <div style={{ marginTop: '70px', color: 'red' }}>Error: {user.error}</div>;
 
   const handlePasswordChange = (e) => {
     e.preventDefault();
@@ -205,17 +205,17 @@ function ProfilePage({ onLogout }) {
   return (
     <div style={{ marginTop: '170px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '60vh' }}>
       <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '12px', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', padding: '2rem 2.5rem', minWidth: 320, color: 'black' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Felhasználói profil</h1>
-        <p><b>Felhasználónév:</b> {user.felnev}</p>
-        <p><b>Jelszó:</b> {user.jelszo}</p>
+        <h1 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>User Profile</h1>
+        <p><b>Username:</b> {user.username}</p>
+        <p><b>Password:</b> {user.password}</p>
         <p><b>Email:</b> {user.email}</p>
         <form onSubmit={handlePasswordChange} style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-          <label>Új jelszó:</label>
-          <input type="password" placeholder="Jelszó módosítása" value={newPassword} onChange={e => setNewPassword(e.target.value)} required style={{ padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc' }} />
-          <button type="submit" style={{ padding: '0.5rem', borderRadius: '6px', background: '#007bff', color: '#fff', border: 'none', marginTop: '0.5rem', cursor: 'pointer' }}>Jelszó módosítása</button>
+          <label>New password:</label>
+          <input type="password" placeholder="Change password" value={newPassword} onChange={e => setNewPassword(e.target.value)} required style={{ padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc' }} />
+          <button type="submit" style={{ padding: '0.5rem', borderRadius: '6px', background: '#007bff', color: '#fff', border: 'none', marginTop: '0.5rem', cursor: 'pointer' }}>Change password</button>
         </form>
         <button onClick={handleDelete} style={{ marginTop: '2rem', background: '#dc3545', color: '#fff', border: 'none', borderRadius: '6px', padding: '0.7rem 1.2rem', cursor: 'pointer', width: '100%' }}>
-          Felhasználó törlése
+          Delete user
         </button>
         {message && <p style={{ color: 'green', marginTop: '1rem' }}>{message}</p>}
       </div>
@@ -236,14 +236,14 @@ function App() {
       return `${prefix} ${number}`;
     }
     function getRandomEmail() {
-      const names = ['info', 'kapcsolat', 'ugyfelszolgalat', 'support', 'hello'];
+      const names = ['info', 'contact', 'customer_service', 'support', 'hello'];
       const domains = ['gmail.com', 'freemail.hu', 'yahoo.com', 'protonmail.com'];
       const name = names[Math.floor(Math.random() * names.length)];
       const domain = domains[Math.floor(Math.random() * domains.length)];
       return `${name}${Math.floor(Math.random()*100)}@${domain}`;
     }
     function getRandomInsta() {
-      const base = ['autoshop', 'alkatreszbolt', 'carparts', 'autobolt', 'alkatreszshop'];
+      const base = ['autoshop', 'carparts', 'autoparts', 'autostore', 'partsshop'];
       return `@${base[Math.floor(Math.random()*base.length)]}${Math.floor(Math.random()*1000)}`;
     }
     const data = {
@@ -256,10 +256,10 @@ function App() {
   });
 
   useEffect(() => {
-    // Kosár törlése oldal újratöltésekor
+    // Clear cart on page reload
     setCart([]);
     localStorage.removeItem('cart');
-    // isLoggedIn szinkronizálása tokennel
+    // Sync isLoggedIn with token
     setIsLoggedIn(!!localStorage.getItem('token'));
   }, []);
 
@@ -287,7 +287,7 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    alert('Sikeres kijelentkezés');
+    alert('Logout successful');
   };
 
   useEffect(() => {

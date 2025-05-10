@@ -25,7 +25,7 @@ function getRandomInsta() {
 const Footer = ({ phone, email, insta }) => {
   return (
     <footer style={{ background: '#222', color: '#fff', padding: '1.5rem 0', marginTop: 40, textAlign: 'center' }}>
-      <div>Telefonszám: {phone}</div>
+      <div>Phone Number: {phone}</div>
       <div>Email: {email}</div>
       <div>Instagram: {insta}</div>
     </footer>

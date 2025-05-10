@@ -32,21 +32,21 @@ function Navbar({ isLoggedIn, onLogout }) {
     <header className="navbar-header">
       <nav className="navbar">
         <div className="navbar-left">
-          <button onClick={() => navigate('/')}>Főoldal</button>
-          <button onClick={() => navigate('/shop')}>Áruház</button>
-          <button onClick={() => navigate('/cart')}>Kosár</button>
+          <button onClick={() => navigate('/')}>Home</button>
+          <button onClick={() => navigate('/shop')}>Shop</button>
+          <button onClick={() => navigate('/cart')}>Cart</button>
           {isLoggedIn && hasOrder && (
-            <button onClick={() => navigate('/order-tracking')}>Rendelés követés</button>
+            <button onClick={() => navigate('/order-tracking')}>Order tracking</button>
           )}
           {isLoggedIn && (
-            <button onClick={() => navigate('/profile')}>Profil</button>
+            <button onClick={() => navigate('/profile')}>Profile</button>
           )}
         </div>
         <div className="navbar-right">
           {isLoggedIn ? (
-            <button onClick={onLogout}>Kijelentkezés</button>
+            <button onClick={onLogout}>Log out</button>
           ) : (
-            <button onClick={() => navigate('/login')}>Bejelentkezés</button>
+            <button onClick={() => navigate('/login')}>Log in</button>
           )}
         </div>
       </nav>

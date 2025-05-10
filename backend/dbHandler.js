@@ -21,42 +21,42 @@ try {
     console.log(error)
 }
 
-exports.alkatresz = dbHandler.define(
-    "alkatresz",{
+exports.part = dbHandler.define(
+    "part",{
         "id":{
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        "nev":{
+        "name":{
             type: DataTypes.STRING,
             allowNull: false
         },
-        "ar":{
+        "price":{
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        "raktarkeszlet":{
+        "stock":{
             type: DataTypes.INTEGER,
             allowNull: false
         }
     }
 )
 
-exports.felhasznalo = dbHandler.define(
-    "felhasznalo",{
+exports.user = dbHandler.define(
+    "user",{
         "id":{
             type:DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        "felnev":{
+        "username":{
             type:DataTypes.STRING,
             allowNull:true
         },
-        "jelszo":{
+        "password":{
             type:DataTypes.STRING,
             allowNull:true
         },
@@ -67,8 +67,8 @@ exports.felhasznalo = dbHandler.define(
     }
 )
 
-exports.rendeles = dbHandler.define(
-    "rendeles",{
+exports.order = dbHandler.define(
+    "order",{
         "id":{
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -79,15 +79,15 @@ exports.rendeles = dbHandler.define(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        "fizetesiAdatok":{
+        "paymentData":{
             type: DataTypes.STRING,
             allowNull: false
         },
-        "szallitasiAdatok":{
+        "shippingData":{
             type: DataTypes.STRING,
             allowNull: false
         },
-        "datum":{
+        "date":{
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: Sequelize.NOW
