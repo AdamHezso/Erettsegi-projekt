@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ShopPage.css';
 
+// Shop page: displays all parts, search, and add to cart functionality
 const ShopPage = ({ onAddToCart }) => {
   const [parts, setParts] = useState([]);
   const [search, setSearch] = useState("");
@@ -11,14 +12,8 @@ const ShopPage = ({ onAddToCart }) => {
       .then(res => res.json())
       .then(data => {
         const arr = Array.isArray(data) ? data : [];
-        const mapped = arr.map(part => ({
-          id: part.id,
-          name: part.nev,
-          price: part.ar,
-          stock: part.raktarkeszlet
-        }));
-        setParts(mapped);
-        setFiltered(mapped);
+        setParts(arr);
+        setFiltered(arr);
       });
   }, []);
 

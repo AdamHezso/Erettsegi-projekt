@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CartPage.css';
 
+// Cart page: displays cart items, allows quantity change and removal
 const CartPage = ({ cart, onUpdateCart }) => {
   const navigate = useNavigate();
 

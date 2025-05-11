@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Checkout page: handles order placement and form for payment/shipping data
 const CheckoutPage = ({ cart, setCart }) => {
   const [paymentData, setPaymentData] = useState('');
   const [shippingData, setShippingData] = useState('');

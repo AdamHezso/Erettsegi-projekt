@@ -11,6 +11,7 @@ import OrderTrackingPage from './components/OrderTrackingPage.jsx';
 import './components/HomePage.css';
 import Footer from './components/Footer.jsx';
 
+// Returns the homepage with daily random offers and a carousel
 function HomePage() {
   const [dailyParts, setDailyParts] = useState([]);
 
@@ -78,6 +79,7 @@ function HomePage() {
   );
 }
 
+// Handles user login and registration form
 function LoginPage({ onLogin }) {
   const [login, setLogin] = useState(true);
   const navigate = useNavigate();
@@ -148,6 +150,7 @@ function LoginPage({ onLogin }) {
   );
 }
 
+// Displays the user profile, allows password change and user deletion
 function ProfilePage({ onLogout }) {
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
@@ -223,6 +226,7 @@ function ProfilePage({ onLogout }) {
   );
 }
 
+// Main application component, handles routing, cart, and authentication state
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('token'));
   const [cart, setCart] = useState(() => []);

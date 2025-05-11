@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
+// Navbar component: handles navigation and login/logout buttons
 function Navbar({ isLoggedIn, onLogout }) {
   const navigate = useNavigate();
   const [hasOrder, setHasOrder] = useState(false);

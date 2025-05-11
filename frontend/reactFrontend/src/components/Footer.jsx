@@ -22,6 +22,7 @@ function getRandomInsta() {
   return `@${base[Math.floor(Math.random()*base.length)]}${Math.floor(Math.random()*1000)}`;
 }
 
+// Footer component: displays contact info (phone, email, Instagram)
 const Footer = ({ phone, email, insta }) => {
   return (
     <footer style={{ background: '#222', color: '#fff', padding: '1.5rem 0', marginTop: 40, textAlign: 'center' }}>

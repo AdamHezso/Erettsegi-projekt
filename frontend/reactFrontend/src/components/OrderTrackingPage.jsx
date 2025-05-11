@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+// Order tracking page: displays order details and status
 const OrderTrackingPage = () => {
   const [order, setOrder] = useState(null);
   const [error, setError] = useState('');
