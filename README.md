@@ -33,8 +33,8 @@ npm run dev
 o
 ```
 
-##🔗 API Végpontok
-###1. Alkatrészek
+## 🔗 API Végpontok
+### 1. Alkatrészek
 **GET /parts** – Az összes alkatrész lekérése
 
 **POST /parts** – Új alkatrész hozzáadása
@@ -43,7 +43,7 @@ o
 
 **DELETE /parts/:id** – Alkatrész törlése
 
-###2. Felhasználók
+### 2. Felhasználók
 **POST /register** – Új felhasználó regisztrációja
 
 **POST /login** – Bejelentkezés
@@ -52,7 +52,7 @@ o
 
 **DELETE /profile** – Felhasználó törlése
 
-###3. Rendelések
+### 3. Rendelések
 **POST /checkout** – Új rendelés létrehozása
 
 **GET /myorder** – Legutóbbi rendelés lekérése
