@@ -31,29 +31,30 @@ cd frontend
 npm install (npm i röviden)
 npm run dev
 o
+```
 
-🔗 API Végpontok
-1. Alkatrészek
-GET /parts – Az összes alkatrész lekérése
+##🔗 API Végpontok
+###1. Alkatrészek
+**GET /parts** – Az összes alkatrész lekérése
 
-POST /parts – Új alkatrész hozzáadása
+**POST /parts** – Új alkatrész hozzáadása
 
-PUT /parts/:id – Meglévő alkatrész módosítása
+**PUT /parts/:id** – Meglévő alkatrész módosítása
 
-DELETE /parts/:id – Alkatrész törlése
+**DELETE /parts/:id** – Alkatrész törlése
 
-2. Felhasználók
-POST /register – Új felhasználó regisztrációja
+###2. Felhasználók
+**POST /register** – Új felhasználó regisztrációja
 
-POST /login – Bejelentkezés
+**POST /login** – Bejelentkezés
 
-GET /profile – Profiladatok lekérése
+**GET /profile** – Profiladatok lekérése
 
-DELETE /profile – Felhasználó törlése
+**DELETE /profile** – Felhasználó törlése
 
-3. Rendelések
-POST /checkout – Új rendelés létrehozása
+###3. Rendelések
+**POST /checkout** – Új rendelés létrehozása
 
-GET /myorder – Legutóbbi rendelés lekérése
+**GET /myorder** – Legutóbbi rendelés lekérése
 
 
