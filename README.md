@@ -23,10 +23,14 @@ A főbb funkciók:
 ```bash
 git clone https://github.com/felhasznalonev/autoalkatresz-webaruhaz.git
 cd autoalkatresz-webaruhaz
-
+```
+### 2.Backend elindítása
+```bash
 cd backend
 node server.js
-
+```
+### 3.Frontend elindítása
+```bash
 cd frontend
 npm install (npm i röviden)
 npm run dev
