@@ -280,7 +280,7 @@ server.get('/myorder', auth(), async (req, res) => {
 });
 
 // Szerver indítása
-const envMsg = PORT ? PORT : 'unknown port';
+
 server.listen(PORT, () => {
-    console.log('Our server has started running on ' + envMsg + ' address')
+    console.log('Our server has started running on 127.1.1.1:' + PORT + ' address')
 })
