@@ -11,7 +11,17 @@ h1{
   margin: 0 auto;
 }
 
+.carousel-img {
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
+@media (min-width: 768px) {
+  .carousel-img {
+    height: 400px;
+  }
+}
 
 nav{
   display: inline;
@@ -93,4 +103,9 @@ body{
 #home {
   margin-top: 40px; /* A navigációs sáv magasságának megfelelő margó */
   padding: 20px; /* További belső margó a tartalomhoz */
+}
+
+@media (max-width: 576px) {
+  .homepage-container { padding: 0.5rem; }
+  .card-title { font-size: 1.1rem; }
 }

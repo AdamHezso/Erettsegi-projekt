@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import './bootstrap-min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -11,7 +11,7 @@ import OrderTrackingPage from './components/OrderTrackingPage.jsx';
 import './components/HomePage.css';
 import Footer from './components/Footer.jsx';
 
-// Returns the homepage with daily random offers and a carousel
+// HomePage: reszponzív ajánlatok és carousel
 function HomePage() {
   const [dailyParts, setDailyParts] = useState([]);
 
@@ -23,7 +23,7 @@ function HomePage() {
           setDailyParts([]);
           return;
         }
-        // Daily random offers (seed: date)
+        // Napi random ajánlatok (seed: dátum)
         const today = new Date();
         const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
         function seededRandom(s) {
@@ -40,117 +40,127 @@ function HomePage() {
   }, []);
 
   return (
-    <div id="home" className="homepage-container">
-      <h1>Welcome to the homepage!</h1>
-      <div id="carouselExampleIndicators" className="carousel slide carousel-container" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="true">
-        <div className="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="/assets/img/part4.jpg" className="d-block w-100" alt="Image 1" />
+    <div id="home" className="homepage-container container py-3">
+      <h1 className="text-center mb-4">Welcome to the homepage!</h1>
+      {/* Bootstrap carousel - reszponzív képekkel */}
+      <div className="container mb-4">
+        <div id="carouselExampleIndicators" className="carousel slide rounded shadow overflow-hidden" data-bs-ride="carousel" data-bs-interval="5000">
+          <div className="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div className="carousel-item">
-            <img src="/assets/img/part5.jpg" className="d-block w-100" alt="Image 2" />
-          </div>
-          <div className="carousel-item">
-            <img src="/assets/img/part3.jpg" className="d-block w-100" alt="Image 3" />
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img src="/assets/img/part4.jpg" className="d-block w-100 carousel-img" alt="Image 1" />
+            </div>
+            <div className="carousel-item">
+              <img src="/assets/img/part5.jpg" className="d-block w-100 carousel-img" alt="Image 2" />
+            </div>
+            <div className="carousel-item">
+              <img src="/assets/img/part3.jpg" className="d-block w-100 carousel-img" alt="Image 3" />
+            </div>
           </div>
         </div>
       </div>
-      <div style={{ marginTop: 40 }}>
-        <h2 className="daily-offers-title">Daily Offers</h2>
-        <div className="daily-offers-row">
-          {dailyParts.map(part => (
-            <div key={part.id} className="daily-offer-card">
-              <h3>{part.name}</h3>
-              <p>Price: {part.price ? part.price + ' Ft' : 'N/A'}</p>
-              <p>Stock: {part.stock !== undefined ? part.stock : 'N/A'}</p>
-              <button onClick={() => window.dispatchEvent(new CustomEvent('add-to-cart', { detail: part }))}>
-                Add to cart
-              </button>
+      <h2 className="daily-offers-title text-center mb-4">Daily Offers</h2>
+      <div className="row g-3">
+        {dailyParts.map(part => (
+          <div key={part.id} className="col-12 col-sm-6 col-lg-3">
+            <div className="card h-100 shadow-sm">
+              <div className="card-body d-flex flex-column">
+                <h3 className="card-title">{part.name}</h3>
+                <p className="card-text">Price: {part.price ? part.price + ' Ft' : 'N/A'}</p>
+                <p className="card-text">Stock: {part.stock !== undefined ? part.stock : 'N/A'}</p>
+                <button className="btn btn-primary mt-auto w-100"
+                  onClick={() => window.dispatchEvent(new CustomEvent('add-to-cart', { detail: part }))}>
+                  Add to cart
+                </button>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-// Handles user login and registration form
+// LoginPage: reszponzív bejelentkezés/regisztráció
 function LoginPage({ onLogin }) {
   const [login, setLogin] = useState(true);
   const navigate = useNavigate();
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h2>Register/Login</h2>
-        <label htmlFor="uname">Username: </label>
-        <input type="email" name="uname" id="uname" /><br />
-        <label htmlFor="pass">Password: </label>
-        <input type="password" name="pass" id="pass" /><br />
-        {login ? "" : (
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
+      <div className="login-form p-4 rounded shadow" style={{ maxWidth: 350, width: '100%', background: '#fff' }}>
+        <h2 className="mb-4 text-center">{login ? "Login" : "Register"}</h2>
+        <label htmlFor="uname" className="form-label">Username:</label>
+        <input type="email" name="uname" id="uname" className="form-control mb-2" />
+        <label htmlFor="pass" className="form-label">Password:</label>
+        <input type="password" name="pass" id="pass" className="form-control mb-2" />
+        {!login && (
           <>
-            <label htmlFor="email">Email: </label>
-            <input type="text" name="email" id="email" /><br />
+            <label htmlFor="email" className="form-label">Email:</label>
+            <input type="text" name="email" id="email" className="form-control mb-2" />
           </>
         )}
-        <button onClick={() => {
-          if (login) {
-            const loginRequest = new XMLHttpRequest();
-            loginRequest.open('post', 'http://localhost:3000/login');
-            loginRequest.setRequestHeader('Content-Type', 'application/json');
-            loginRequest.send(JSON.stringify({
-              loginName: uname.value,
-              loginPassword: pass.value
-            }));
-            loginRequest.onreadystatechange = () => {
-              if (loginRequest.status === 200 && loginRequest.readyState === 4) {
-                const response = JSON.parse(loginRequest.responseText);
-                if (response.token) {
-                  localStorage.setItem('token', response.token);
-                }
-                alert('Login successful');
-                onLogin();
-                navigate('/profile'); // Navigate to profile page
-              } else if (loginRequest.readyState === 4) {
-                alert('Invalid login credentials');
+        <div className="d-grid gap-2 mt-3">
+          <button className="btn btn-primary"
+            onClick={() => {
+              if (login) {
+                const loginRequest = new XMLHttpRequest();
+                loginRequest.open('post', 'http://localhost:3000/login');
+                loginRequest.setRequestHeader('Content-Type', 'application/json');
+                loginRequest.send(JSON.stringify({
+                  loginName: uname.value,
+                  loginPassword: pass.value
+                }));
+                loginRequest.onreadystatechange = () => {
+                  if (loginRequest.status === 200 && loginRequest.readyState === 4) {
+                    const response = JSON.parse(loginRequest.responseText);
+                    if (response.token) {
+                      localStorage.setItem('token', response.token);
+                    }
+                    alert('Login successful');
+                    onLogin();
+                    navigate('/profile');
+                  } else if (loginRequest.readyState === 4) {
+                    alert('Invalid login credentials');
+                  }
+                };
+              } else {
+                setLogin(true);
               }
-            };
-          } else {
-            setLogin(true);
-          }
-        }}>Login</button>
-        <button onClick={() => {
-          if (login) {
-            setLogin(false);
-          } else {
-            const regRequest = new XMLHttpRequest();
-            regRequest.open('post', 'http://localhost:3000/register');
-            regRequest.setRequestHeader('Content-Type', 'application/json');
-            regRequest.send(JSON.stringify({
-              registerName: uname.value,
-              registerPassword: pass.value,
-              email: email.value
-            }));
-            regRequest.onreadystatechange = () => {
-              if (regRequest.status === 201 && regRequest.readyState === 4) {
-                alert('Registration successful');
-              } else if (regRequest.readyState === 4) {
-                alert('Registration error');
+            }}>Login</button>
+          <button className="btn btn-outline-secondary"
+            onClick={() => {
+              if (login) {
+                setLogin(false);
+              } else {
+                const regRequest = new XMLHttpRequest();
+                regRequest.open('post', 'http://localhost:3000/register');
+                regRequest.setRequestHeader('Content-Type', 'application/json');
+                regRequest.send(JSON.stringify({
+                  registerName: uname.value,
+                  registerPassword: pass.value,
+                  email: email.value
+                }));
+                regRequest.onreadystatechange = () => {
+                  if (regRequest.status === 201 && regRequest.readyState === 4) {
+                    alert('Registration successful');
+                  } else if (regRequest.readyState === 4) {
+                    alert('Registration error');
+                  }
+                };
               }
-            };
-          }
-        }}>Register</button>
+            }}>{login ? "Switch to Register" : "Register"}</button>
+        </div>
       </div>
     </div>
   );
 }
 
-// Displays the user profile, allows password change and user deletion
+// ProfilePage: reszponzív profil, jelszóváltás, törlés
 function ProfilePage({ onLogout }) {
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
@@ -206,21 +216,21 @@ function ProfilePage({ onLogout }) {
   };
 
   return (
-    <div style={{ marginTop: '170px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '60vh' }}>
-      <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '12px', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', padding: '2rem 2.5rem', minWidth: 320, color: 'black' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>User Profile</h1>
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
+      <div className="bg-white border rounded shadow p-4" style={{ minWidth: 280, maxWidth: 400, width: '100%', color: 'black' }}>
+        <h1 className="text-center mb-4">User Profile</h1>
         <p><b>Username:</b> {user.username}</p>
         <p><b>Password:</b> {user.password}</p>
         <p><b>Email:</b> {user.email}</p>
-        <form onSubmit={handlePasswordChange} style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-          <label>New password:</label>
-          <input type="password" placeholder="Change password" value={newPassword} onChange={e => setNewPassword(e.target.value)} required style={{ padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc' }} />
-          <button type="submit" style={{ padding: '0.5rem', borderRadius: '6px', background: '#007bff', color: '#fff', border: 'none', marginTop: '0.5rem', cursor: 'pointer' }}>Change password</button>
+        <form onSubmit={handlePasswordChange} className="mt-3">
+          <label className="form-label">New password:</label>
+          <input type="password" placeholder="Change password" value={newPassword} onChange={e => setNewPassword(e.target.value)} required className="form-control mb-2" />
+          <button type="submit" className="btn btn-primary w-100">Change password</button>
         </form>
-        <button onClick={handleDelete} style={{ marginTop: '2rem', background: '#dc3545', color: '#fff', border: 'none', borderRadius: '6px', padding: '0.7rem 1.2rem', cursor: 'pointer', width: '100%' }}>
+        <button onClick={handleDelete} className="btn btn-danger w-100 mt-3">
           Delete user
         </button>
-        {message && <p style={{ color: 'green', marginTop: '1rem' }}>{message}</p>}
+        {message && <p className="text-success mt-2">{message}</p>}
       </div>
     </div>
   );
